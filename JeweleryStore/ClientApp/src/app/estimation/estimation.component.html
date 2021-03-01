@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    Estimation
+    <span class="float-right">
+      Welcome {{userType}} User!
+    </span>
+  </div>
+  <div class="card-body">
+    
+    <div>
+      <form [formGroup]="form" (ngSubmit)="calculatePrice(form.value)">
+        <div>
+          Gold Price (per gram): <input type="number" class="fullWidth" placeholder="Gold Price" formControlName="goldPrice">
+        </div>
+        <div>
+          Weight (grams): <input type="number" class="fullWidth" placeholder="Weight" formControlName="weight">
+        </div>
+        <div *ngIf="totalPrice>=0">
+          Total Price: {{totalPrice}}
+        </div>
+        <div *ngIf="isPrivilegedUser">
+          Discount %: {{discountValue}}
+        </div>
+        <div>
+          <button color="primary" [disabled]="!form.valid">Calculate</button>
+          <div class="float-right">
+            <button color="primary" [disabled]="!totalPrice" (click)="print(PrintOptions.Screen)">Print to Screen</button> 
+            <button color="primary" [disabled]="!totalPrice" (click)="print(PrintOptions.File)">Print to File</button> 
+            <button color="primary" [disabled]="!totalPrice" (click)="print(PrintOptions.Paper)">Print To Paper</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
